@@ -5,6 +5,11 @@ It provides a modern slide design based on UiA branding, including a title slide
 
 ---
 
+My group used this template for our bachlor thisies. The first slide looks like this
+
+<img width="767" height="427" alt="image" src="https://github.com/user-attachments/assets/5a9d49fc-dd17-404d-8ed6-e42d848ff48a" />
+
+
 ## Features
 - 16:9 aspect ratio slides
 - UiA color scheme and logo
