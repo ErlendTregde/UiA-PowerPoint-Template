@@ -1,0 +1,249 @@
+\ProvidesPackage{poly}[2023/04/29 Beamer Theme for PolyU by Crumble Jon.]
+
+% ================================================================================
+% Packages
+% ================================================================================
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{amsthm}
+
+\RequirePackage{verbatim}
+\RequirePackage{hyperref}
+\RequirePackage{listings}
+
+% ================================================================================
+% Color Accents
+% ================================================================================
+
+\definecolor{polyured}					{HTML}{c92036}
+\definecolor{polyured2}					{HTML}{c92036}
+\definecolor{polyugrey}					{HTML}{58595B}
+\definecolor{skyblue}					{HTML}{6BA4B8}
+
+\setbeamercolor{title}					{fg=white}
+\setbeamercolor{author}					{fg=white}
+\setbeamercolor{date}					{fg=white}
+\setbeamercolor{institute}				{fg=white}
+\setbeamercolor{head}					{bg=polyured2}
+
+\setbeamercolor{alerted text}			{fg=polyured}
+\setbeamercolor{normal text}			{fg=darkgray, bg=white}
+\setbeamercolor{structure}				{fg=polyured}
+
+\setbeamercolor{jumbo}					{bg=polyured2}
+\setbeamercolor{progress bar}			{fg=polyured, bg=polyugrey}
+\setbeamercolor{progress bar progress}	{use=progress bar, bg=progress bar.fg}
+
+\setbeamercolor{block title}			{use=structure, fg=white, bg=polyured2}
+\setbeamercolor{block body}				{use=structure, fg=darkgray, bg=polyured2!10}
+
+\hypersetup{
+	colorlinks,
+	linkcolor=polyured,
+	anchorcolor=red,
+	citecolor=blue!80,
+	urlcolor=polyured2,
+}
+
+% ================================================================================
+% Fonts
+% ================================================================================
+
+\setbeamerfont{title}					{series=\bfseries, size=\Large}
+\setbeamerfont{subtitle}				{series=\mdseries, size=\normalsize}
+
+\setbeamerfont{author}					{size=\small}
+\setbeamerfont{date}					{size=\footnotesize}
+\setbeamerfont{institute}				{size=\footnotesize}
+
+\setbeamerfont{alerted text}			{series=\bfseries}
+
+\setbeamerfont{frametitle}				{series=\bfseries}
+\setbeamerfont{framesubtitle}			{series=\mdseries}
+\setbeamerfont{footline}				{size=\scriptsize}
+\setbeamerfont{block title}				{size=\normalsize, series=\bfseries}
+\setbeamerfont{block body}				{size=\normalsize}
+
+\usefonttheme{serif}
+
+% ================================================================================
+% Basic Settings
+% ================================================================================
+
+% cancel navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% prettier boxes
+\setbeamertemplate{blocks}[rounded]
+
+% bullet points
+\setbeamertemplate{itemize item}		{\textbullet}
+\setbeamertemplate{itemize subitem}		{\textemdash}
+\setbeamertemplate{itemize subsubitem}	{\ensuremath{\circ}}
+
+% paragraph spacing
+\setlength{\parskip}					{5pt}
+
+% code environment
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{polyured2!50},
+    keywordstyle=\color{polyured},
+    numberstyle=\tiny\color{polyugrey},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+}
+\lstset{style=mystyle}
+
+% ================================================================================
+% Slide Templates
+% ================================================================================
+
+% headline for all frames
+\setbeamertemplate{headline}{
+	\ifnum\theframenumber=1
+		% not display the headline for the title page
+	\else
+		\begin{beamercolorbox}[wd=\paperwidth,ht=40pt]{head}
+			\vspace{9px}\hspace{395pt}\includegraphics[width=50pt]{source/logo-white.pdf}
+		\end{beamercolorbox}
+	\fi
+}
+
+% frame title and subtitle
+\setbeamertemplate{frametitle}{
+    \begin{picture}(0,0)
+        \ifx\insertframesubtitle\@empty%
+            \put(0,27){\usebeamerfont{frametitle}\usebeamercolor[fg]{title}\insertframetitle}%
+		\else%
+			\put(0,32){\usebeamerfont{frametitle}\usebeamercolor[fg]{title} \insertframetitle}%
+			\put(0,20){\usebeamerfont{framesubtitle}\usebeamercolor[fg]{title} \insertframesubtitle }
+		\fi
+    \end{picture}
+}
+
+% title page
+\setbeamertemplate{title page}{
+	\begin{picture}(0,0)
+		\put(-24,67){\includegraphics[width=140pt]{source/logo-name.png}}
+        \put(-5,-90){
+            \begin{beamercolorbox}[wd=1.1\paperwidth,ht=150pt]{jumbo}
+            \end{beamercolorbox}
+        }
+        \put(243,-139){\includegraphics[width=250pt]{source/trans.png}}
+		\put(0,25){%
+			\begin{minipage}{300pt}
+				\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par
+				\vspace{10pt}
+				\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
+			\end{minipage}
+		}
+		\put(0,-37){%
+			\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor
+		}
+        \put(0,-52){%
+            \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\small Supervisor: Add from poly.sty
+        }
+
+        \put(0,-67){%
+			\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute
+		}
+		\put(0,-80){%
+			\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
+		}
+        \put(285,-128){\includegraphics[width=140pt]{source/tagline}}
+	\end{picture}
+}
+
+% progress bar at the bottom
+\defbeamertemplate{footline}{progress bar}{
+	\dimen0=\paperwidth
+    \divide\dimen0 by \inserttotalframenumber
+	\multiply\dimen0 by \insertframenumber
+	\edef\progressbarwidth{\the\dimen0}
+	\leavevmode%
+	\ifnum\theframenumber=1
+	\else
+		\begin{beamercolorbox}[wd=\paperwidth,ht=2pt,dp=1pt]{progress bar}
+			\begin{beamercolorbox}[wd=\progressbarwidth,ht=2pt,dp=1pt]{progress bar progress}
+			\end{beamercolorbox}%
+		\end{beamercolorbox}%
+	\fi
+}
+
+\setbeamertemplate{footline}[progress bar]
+
+\addtobeamertemplate{footline}{
+  \ifnum\theframenumber=1
+  \else
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0ex,dp=1ex,leftskip=0.96\paperwidth]{footline}
+        \usebeamerfont{footline}%
+        \insertframenumber
+    \end{beamercolorbox}
+  \fi
+}{}
+
+
+
+
+% last frame
+\newcommand{\backmatter}{
+	\begingroup
+	\setbeamertemplate{headline}{}
+	\setbeamertemplate{footline}{}
+	\begin{frame}[c]{}
+		\begin{picture}(0,0)
+			\put(-28.5,-25){\includegraphics[width=1.01\paperwidth]{source/last-frame}}
+		\end{picture}
+	\end{frame}
+\endgroup
+}
+
+
+%empty frame:
+\newcommand{\emptyframe}{
+  \begingroup
+  \setbeamertemplate{headline}{}
+  \setbeamertemplate{footline}{}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamercolor{background canvas}{bg=black}
+  \begin{frame}[plain]
+  \end{frame}
+  \endgroup
+}
+
+
+
+% style of sections and subsections in ToCs
+\setbeamertemplate{section in toc}{
+	$\blacktriangleright$~\textbf{\inserttocsection}
+}
+\setbeamertemplate{subsection in toc}{}
+\setbeamertemplate{frametitle continuation}{}
+
+\newcommand\BackgroundPic{
+    \put(0,0){
+        \parbox[b][\paperheight]{\paperwidth}{
+            \vfill
+            \centering
+            \includegraphics[width=\paperwidth,keepaspectratio,opacity=0.05]{source/forstå.pdf}%
+            \vfill
+        }
+    }
+}
